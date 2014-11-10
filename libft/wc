@@ -1,0 +1,1 @@
+ls -l | grep "ft_" | wc -l
