@@ -6,7 +6,7 @@
 #    By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/09 13:04:36 by mbryan            #+#    #+#              #
-#    Updated: 2014/11/10 09:14:38 by mbryan           ###   ########.fr        #
+#    Updated: 2014/11/25 15:39:11 by mbryan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAG) -c $(SRC) -I ./
+	gcc $(FLAG) -c $(SRC) -I ./includes
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 

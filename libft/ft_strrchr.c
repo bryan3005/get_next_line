@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 10:18:53 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/10 10:23:23 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 12:07:57 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,18 @@ char	*ft_strrchr(const char *str, int c)
 {
 	char	d;
 	char	*ptr;
-	int		i;
+	size_t	i;
 
 	d = c;
 	i = 0;
-	ptr = (char *)malloc(ft_strlen(str) * sizeof(const char));
-	if (ptr == NULL)
-		return (NULL);
-	while (str[i])
-	{
-		ptr[i] = str[i];
-		i++;
-	}
-	ptr[i] = '\0';
+	ptr = (char *)str;
 	while (*ptr)
 		ptr++;
-	while (*ptr != d && *ptr != *str)
+	while (*ptr != d && i < ft_strlen(str))
+	{
 		ptr--;
+		i++;
+	}
 	if (*ptr == d)
 		return (ptr);
 	return (NULL);

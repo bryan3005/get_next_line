@@ -6,33 +6,32 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:17:37 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/10 10:48:09 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 10:55:24 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 #include <string.h>
 
-char	*ft_strnstr(const char *str1, const char *str2, size_t n)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
 	char	*ptr;
 
 	i = 0;
-	j = 0;
-	ptr = ft_strdup(str1);
-	i = 0;
-	while (str1[i] && i < n)
+	ptr = (char *)s1;
+	while ((*ptr && n-- != 0) || s2[0] == '\0')
 	{
-		while (ptr[i + j] == str2[j] && i + j < n)
-			j++;
-		if (str2[j] == '\0' && ptr)
-			return (ptr + i);
-		else if (str2[j - 1] == '\0' && ptr != '\0')
-			return (ptr + i);
-		j = 0;
-		i++;
+		if (*ptr == s2[0] || s2[0] == '\0')
+		{
+			i = 0;
+			while (ptr[i] == s2[i] && n + 1 - i != 0 && ptr[i] != '\0')
+				i++;
+			if (s2[i] == '\0')
+				return (ptr);
+		}
+		ptr++;
 	}
 	return (NULL);
 }

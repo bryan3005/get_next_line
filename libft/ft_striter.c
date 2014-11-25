@@ -6,12 +6,16 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 11:12:12 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/09 12:28:25 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/16 16:59:55 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+
 void	ft_striter(char *s, void (*f)(char *))
 {
+	if (s == NULL || f == NULL)
+		return ;
 	while (*s)
 	{
 		f(s);

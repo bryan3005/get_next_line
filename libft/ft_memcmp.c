@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/05 16:47:10 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/09 12:13:09 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 11:36:26 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	ptr2 = (unsigned char*)s2;
 	while (ptr1[i] == ptr2[i])
 	{
-		if (ptr1[i] == '\0' || i + 1 == n)
+		if (i + 1 == n)
 			return (0);
 		i++;
 	}

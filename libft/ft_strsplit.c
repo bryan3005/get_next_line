@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/07 09:56:06 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/09 12:32:37 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 08:39:53 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**mallop(char const *s, char c)
 	cpy = malloc((t + 1) * sizeof(char *));
 	if (cpy == NULL)
 		return (NULL);
-	cpy[t + 1] = '\0';
+	cpy[t] = '\0';
 	while (t > 0)
 	{
 		cpy[i] = malloc((ft_letterbyword(s, i, c) + 1) * sizeof(char));

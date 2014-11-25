@@ -1,78 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   test3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/10 14:32:43 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/11 16:25:24 by mbryan           ###   ########.fr       */
+/*   Created: 2014/11/25 10:37:52 by mbryan            #+#    #+#             */
+/*   Updated: 2014/11/25 13:44:26 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
-char		*mallo(char **line, char *buf)
+int		len(char *buf, int i)
 {
-	int	len;
+	int len;
 
 	len = 0;
-	while (buf[len] != '\n')
+	while (buf[i + len] != '\n' && buf[i + len] != '\0')
 		len++;
-	*line = (char*)malloc(len * sizeof(char));
-	if (*line == NULL)
+	return (len);
+}
+
+char	*read_buf(int fd)
+{
+	int		bytes_read;
+	char	*buf;
+	char	*ptr;
+	char	buffer[BUFF_SIZE + 1];
+
+	bytes_read = 1;
+	if ((buf = (char *)malloc(0)) == NULL)
 		return (NULL);
-	line[0][len] = '\0';
-	return (*line);
+	while (bytes_read != 0)
+	{
+		if ((bytes_read = read(fd, buffer, BUFF_SIZE)) == -1)
+			return (NULL);
+		buffer[bytes_read] = '\0';
+		ptr = buf;
+		if ((buf = ft_strjoin(buf, buffer)) == NULL)
+			return (NULL);
+		free (ptr);
+		ft_memset(buffer, 0, BUFF_SIZE);
+	}
+	return (buf);
 }
 
-int			get_next_line(int const fd, char **line)
+int		get_next_line(int const fd, char **line)
 {
-	char		buf[BUFF_SIZE + 1];
-	static int	i = 0;
-	int			z;
+	static int		i = 0;
+	int				b;
+	static char		*buf;
 
-	z = 0;
-
-	//printf("%s\n", "ess" );
-	if (i == 0)
-		if (read(fd, buf, BUFF_SIZE) <= 0)
-			return (-1);
-	//printf("%s\n", buf );
-	if (mallo(line, buf) == NULL)
+	if (BUFF_SIZE >= MAX_BUFF_SIZE || BUFF_SIZE <= 0)
 		return (-1);
-	while (buf[i] != '\n' && buf[i] != '\0')
-	{
-		line[0][z] = buf[i];
-		i++;
-		z++;
-	}
-	//ft_putstr(*line);
+	if (i == 0)
+		if ((buf = read_buf(fd)) == NULL)
+			return (-1);
+	if ((*line = (char*)malloc((len(buf, i) + 1) * sizeof(char))) == NULL)
+		return (-1);
+	b = -1;
+	while (buf[i + ++b] != '\n' && buf[i + b] != '\0')
+		line[0][b] = buf[i + b];
+	i = i + b;
 	if (buf[i] == '\0')
-		return (0);
-	i++;
-	//ft_putchar('\n');
-	return (1);
-}
-
-int			main(void)
-{
-
-	int		fd;
-	char	*txt;
-	char	**ptr;
-	int		i;
-
-	i = 1;
-	ptr = &txt;
-	fd = open("putfd", O_RDWR | O_CREAT);
-
-	//printf("%d\n\n$", fd);
-	while (i <= 50)
 	{
-		get_next_line(fd, ptr);
-		printf("%s", *ptr); 
-		i++;
+		line[0][b] = '\0';
+		return (0);
 	}
-	return (0);
+	line[0][b] = '\0';
+	i++;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:57:11 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/09 12:10:19 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/19 10:59:05 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_bzero(void *s, size_t n)
 	char	*str;
 
 	i = 0;
-	str = s;
-	while (i != n && str[i])
+	str = (char*)s;
+	while (i != n)
 	{
 		str[i] = '\0';
 		i++;

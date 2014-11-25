@@ -6,37 +6,34 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 10:44:04 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/10 10:48:17 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 10:54:43 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-char	*ft_strstr(const char *str1, const char *str2)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	int				i;
-	int				j;
-	char			*ptr;
+	int		i;
+	char	*ptr;
 
 	i = 0;
-	j = 0;
-	ptr = ft_strdup(str1);
-	while (str1[i])
+	ptr = (char *)s1;
+	while (*ptr)
 	{
-		ptr[i] = str1[i];
-		i++;
-	}
-	i = 0;
-	while (ptr[i])
-	{
-		while (ptr[i + j] == str2[j])
-			j++;
-		if (str2[j] == '\0' && ptr)
-			return (ptr + i);
-		else if (str2[j - 1] == '\0' && ptr != '\0')
-			return (ptr + i);
-		j = 0;
-		i++;
+		if (*ptr == s2[0] || s2[0] == '\0')
+		{
+			i = 0;
+			while (*(ptr + i) == s2[i] || s2[0] == '\0')
+			{
+				if (s2[i + 1] == '\0')
+					return (ptr);
+				i++;
+			}
+		}
+		ptr++;
 	}
 	return (NULL);
 }

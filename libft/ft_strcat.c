@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/05 00:30:18 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/10 10:14:51 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 12:06:44 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,19 @@ char	*ft_strcat(char *s1, const char *s2)
 
 	i = 0;
 	j = 0;
-	ptr = ft_strdup(s1);
-	s1 = (char *)malloc ((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char));
+	ptr = ft_strdup(s2);
 	if (s1 == NULL)
 		return (NULL);
+	while (s1[j])
+	{
+		j++;
+	}
 	while (ptr[i])
 	{
-		s1[i] = ptr[i];
+		s1[j + i] = ptr[i];
 		i++;
 	}
-	while (s2[j])
-	{
-		s1[i] = s2[j];
-		j++;
-		i++;
-	}
-	s1[i] = '\0';
+	s1[i + j] = '\0';
+	free(ptr);
 	return (s1);
 }

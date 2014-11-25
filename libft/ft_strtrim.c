@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 14:33:47 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/10 13:23:18 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/17 08:45:01 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ml(const char *s)
 {
 	char	*ptr;
 
-	ptr = malloc(ft_len(s) * sizeof(char));
+	ptr = malloc((ft_len(s) + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	ptr[ft_len(s)] = '\0';
