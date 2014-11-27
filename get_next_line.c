@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test3.c                                            :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/25 10:37:52 by mbryan            #+#    #+#             */
-/*   Updated: 2014/11/25 13:44:26 by mbryan           ###   ########.fr       */
+/*   Updated: 2014/11/26 11:06:34 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
 int		len(char *buf, int i)
 {
@@ -41,7 +40,7 @@ char	*read_buf(int fd)
 		ptr = buf;
 		if ((buf = ft_strjoin(buf, buffer)) == NULL)
 			return (NULL);
-		free (ptr);
+		free(ptr);
 		ft_memset(buffer, 0, BUFF_SIZE);
 	}
 	return (buf);
